@@ -42,8 +42,21 @@
   // Arrivals filter chips
   $$('.chip').forEach(c => c.addEventListener('click', () => {
     $$('.chip').forEach(x => x.setAttribute('aria-pressed', x === c));
-    $$('.product').forEach(p => { p.hidden = !p.dataset.tags.split(' ').includes(c.dataset.filter); });
+    $$('.product').forEach(p => { p.hidden = c.dataset.filter !== 'all' && !p.dataset.tags.split(' ').includes(c.dataset.filter); });
   }));
+
+  // Sort products by price (shop pages)
+  const sort = $('#sort');
+  if (sort) {
+    const grid = $('#grid');
+    $$('.product', grid).forEach((p, i) => p.dataset.i = i);
+    sort.addEventListener('change', () => {
+      const d = sort.value === 'asc' ? 1 : -1;
+      $$('.product', grid)
+        .sort((a, b) => sort.value ? (a.dataset.price - b.dataset.price) * d : a.dataset.i - b.dataset.i)
+        .forEach(p => grid.append(p));
+    });
+  }
 
   // Wishlist hearts also update the header badge-free state
   $$('.heart').forEach(h => h.addEventListener('click', () => {

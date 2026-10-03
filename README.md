@@ -15,7 +15,7 @@ Then open http://localhost:8000. You can also open `index.html` directly in a br
 
 ## Structure
 ```
-index.html   about.html
+index.html  about.html  men.html  women.html  footwear.html  apparel.html  brands.html  sale.html
 css/styles.css      design tokens, layout, responsive rules
 js/main.js          nav menu, hero slider, arrivals filter, wishlist, newsletter validation
 assets/img/         images converted to WebP (≈590 KB total, down from ≈9 MB)
